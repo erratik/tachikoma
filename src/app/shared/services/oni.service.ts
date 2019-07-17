@@ -1,6 +1,4 @@
 import { Inject } from '@angular/core';
-
-import { Logger } from './logger.service';
 import { LOCAL_STORAGE, WebStorageService } from 'angular-webstorage-service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ErrorService } from './error.service';
@@ -14,10 +12,10 @@ export class OniService {
     this.currentUser = this.storage.get('currentUser');
   }
 
-  public getAll<T>(endpoint: string): PromiseLike<T[]> {
+  public get<T>(options: { [key: string]: string }): PromiseLike<T[]> {
     const token = this.currentUser.authorization[0].token;
     const headers = new HttpHeaders({ Authorization: `Bearer ${token}` });
-    const items = this.http.get<T[]>(endpoint, { headers }).pipe(tap((data) => data, (error) => this.errorService.handleError(error))).toPromise();
+    const items = this.http.get<T[]>(options.endpoint, { headers }).pipe(tap((data) => data, (error) => this.errorService.handleError(error))).toPromise();
     return Promise.resolve(items);
   }
 }

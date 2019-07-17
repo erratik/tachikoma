@@ -9,10 +9,10 @@ import { Logger } from '@shared/services/logger.service';
 export class SpaceService {
   private spaces: Space[] = [];
 
-  constructor(private backend: OniService, private logger: Logger) {}
+  constructor(private oni: OniService, private logger: Logger) {}
 
   getSpaces() {
-    this.backend.getAll<Space>('/oni/spaces').then((spaces: Space[]) => {
+    this.oni.get<Space>({ endpoint: '/oni/spaces' }).then((spaces: Space[]) => {
       this.logger.log(`Fetched ${spaces.length} spaces.`);
       this.spaces.push(...spaces); // fill cache
     });
