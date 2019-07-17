@@ -1,0 +1,8 @@
+{
+  "singleQuote": true,
+  "trailingComma": "es5",
+  "printWidth": 160,
+  "jsxBracketSameLine": true,
+  "proseWrap": "preserve",
+  "endOfLine": "lf"
+}

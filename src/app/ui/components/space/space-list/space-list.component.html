@@ -1,0 +1,10 @@
+<h2>Space List</h2>
+
+<p><i>Pick a space from the list</i></p>
+<ul>
+  <li *ngFor="let space of spaces" (click)="selectSpace(space)">
+    {{space.name}}
+  </li>
+</ul>
+
+<app-space-detail *ngIf="selectedSpace" [space]="selectedSpace"></app-space-detail>

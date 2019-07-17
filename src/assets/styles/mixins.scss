@@ -1,0 +1,12 @@
+@import "imported/bulma-vars";
+
+
+@mixin border-bottom {
+  margin: 10px 0;
+  padding-bottom: 9px;
+  border-bottom: 1px solid fade($black-ter, 5%);
+
+  &:last-of-type {
+    border: none;
+  }
+}

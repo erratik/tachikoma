@@ -1,0 +1,22 @@
+{
+
+  "/auth/*": {
+    "target": "https://localhost:10011",
+    "secure": false
+  },
+
+  "/api/status": {
+    "target": "https://localhost:10011/status",
+    "secure": false,
+    "pathRewrite": {
+      "^/api/status": ""
+    }
+  },
+  "/oni/*": {
+    "target": "https://localhost:10011/v1",
+    "secure": false,
+    "pathRewrite": {
+      "^/oni": ""
+    }
+  }
+}
