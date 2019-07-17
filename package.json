@@ -3,7 +3,8 @@
   "version": "3.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "node --inspect=0.0.0.0:9231 ./node_modules/\\@angular/cli/bin/ng serve",
+    "debug": "node --inspect=0.0.0.0:9231 ./node_modules/\\@angular/cli/bin/ng serve --vendorChunk=true",
+    "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",

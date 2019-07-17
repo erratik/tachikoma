@@ -1,19 +1,23 @@
-import { Injectable, Type } from '@angular/core';
+import { Inject } from '@angular/core';
 
 import { Logger } from './logger.service';
-import { Space } from '../space/space.interface';
+import { LOCAL_STORAGE, WebStorageService } from 'angular-webstorage-service';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { ErrorService } from './error.service';
+import { tap } from 'rxjs/operators';
 
-@Injectable()
 export class OniService {
-  constructor(private logger: Logger) {}
+  public currentUser: any;
+  public data: any = [];
 
-  getAll(type: Type<any>): PromiseLike<any[]> {
-    if (type === Space) {
-      // TODO: get from the database
-      return Promise.resolve<any[]>([]);
-    }
-    const err = new Error('Cannot get object of this type');
-    this.logger.error(err);
-    throw err;
+  constructor(@Inject(LOCAL_STORAGE) public storage: WebStorageService, private http: HttpClient, private errorService: ErrorService) {
+    this.currentUser = this.storage.get('currentUser');
+  }
+
+  public getAll<T>(endpoint: string): PromiseLike<T[]> {
+    const token = this.currentUser.authorization[0].token;
+    const headers = new HttpHeaders({ Authorization: `Bearer ${token}` });
+    const items = this.http.get<T[]>(endpoint, { headers }).pipe(tap((data) => data, (error) => this.errorService.handleError(error))).toPromise();
+    return Promise.resolve(items);
   }
 }

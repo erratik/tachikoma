@@ -9,10 +9,10 @@
     "name": "TACHIKOMA",
     "port": 9231,
     "protocol": "inspector",
-    "localRoot": "${workspaceRoot}",
-    "remoteRoot": "/dist/out-tsc",
+    "localRoot": "${workspaceRoot}/src",
+    "remoteRoot": "/app",
     "sourceMaps": true,
-    "timeout": 90000,
+    "timeout": 50000,
     "restart": true
-  }]
+  }, ]
 }

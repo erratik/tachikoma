@@ -4,12 +4,11 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { Logger } from './services/logger.service';
 import { OniService } from './services/oni.service';
-import { SpaceService } from './space/space.service';
 import { ErrorService } from './services/error.service';
 
 @NgModule({
   declarations: [],
-  imports: [CommonModule, HttpClientModule, FormsModule],
-  providers: [ErrorService, Logger],
+  imports: [ CommonModule, HttpClientModule, FormsModule ],
+  providers: [ ErrorService, Logger, OniService ]
 })
 export class SharedModule {}

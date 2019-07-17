@@ -4,7 +4,7 @@ import { OniService } from '../services/oni.service';
 import { Logger } from '@shared/services/logger.service';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class SpaceService {
   private spaces: Space[] = [];
@@ -12,7 +12,7 @@ export class SpaceService {
   constructor(private backend: OniService, private logger: Logger) {}
 
   getSpaces() {
-    this.backend.getAll(Space).then((spaces: Space[]) => {
+    this.backend.getAll<Space>('/oni/spaces').then((spaces: Space[]) => {
       this.logger.log(`Fetched ${spaces.length} spaces.`);
       this.spaces.push(...spaces); // fill cache
     });

@@ -1,4 +1,4 @@
-<h2>Space List</h2>
+<h2>Space List ({{spaces.length}})</h2>
 
 <p><i>Pick a space from the list</i></p>
 <ul>
@@ -7,4 +7,4 @@
   </li>
 </ul>
 
-<app-space-detail *ngIf="selectedSpace" [space]="selectedSpace"></app-space-detail>
+<space-detail *ngIf="selectedSpace" [space]="selectedSpace"></space-detail>

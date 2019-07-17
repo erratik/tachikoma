@@ -9,10 +9,11 @@ import { SharedModule } from '@shared/shared.module';
 
 import { AppComponent } from './app.component';
 import { ViewsModule } from '@ui/views/views.module';
+import { SpaceModule } from './ui/components/space/space.module';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, StorageServiceModule, SharedModule, UiModule, ViewsModule, AppRoutingModule],
+  imports: [BrowserModule, StorageServiceModule, SharedModule, UiModule, ViewsModule, AppRoutingModule, SpaceModule],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
