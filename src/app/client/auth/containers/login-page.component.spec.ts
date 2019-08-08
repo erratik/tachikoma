@@ -5,8 +5,8 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { Store } from '@ngrx/store';
 import { LoginPageComponent } from '@auth/containers';
 import { LoginFormComponent } from '@auth/components';
-import * as fromAuth from '@auth/reducers';
-import { LoginPageActions } from '@auth/actions';
+import * as fromAuth from '@client/auth/state/reducers';
+import { LoginPageActions } from '@client/auth/state/actions';
 import { provideMockStore, MockStore } from '@ngrx/store/testing';
 
 describe('Login Page', () => {

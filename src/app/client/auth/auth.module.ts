@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
+import { AuthEffects } from '@auth/state/effects';
+import * as fromAuth from '@client/auth/state/reducers';
+
 import { LoginPageComponent } from '@auth/containers';
 import { LoginFormComponent, LogoutConfirmationDialogComponent } from '@auth/components';
 
-import { AuthEffects } from '@auth/effects';
-import * as fromAuth from '@auth/reducers';
 import { MaterialModule } from '@client/material';
 import { AuthRoutingModule } from './auth-routing.module';
 
@@ -22,7 +23,6 @@ export const COMPONENTS = [ LoginPageComponent, LoginFormComponent, LogoutConfir
     StoreModule.forFeature(fromAuth.authFeatureKey, fromAuth.reducers),
     EffectsModule.forFeature([ AuthEffects ])
   ],
-  declarations: COMPONENTS,
-  entryComponents: [ LogoutConfirmationDialogComponent ]
+  declarations: COMPONENTS
 })
 export class AuthModule {}

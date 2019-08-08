@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
 // import { MaterialModule } from '@client/material';
 import { LoginPageComponent } from '@auth/containers';
 import { ContainersModule } from '@containers/.';
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule } from '../app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ErrorService } from '@services/error.service';
 import { LoggerService } from '@services/logger.service';

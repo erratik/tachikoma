@@ -9,8 +9,8 @@
       <a routerLink="map" class="nav-item is-tab" routerLinkActive="is-active">cloud</a>
       <a routerLink="journal" class="nav-item is-tab" routerLinkActive="is-active ">journal</a>
     </div>
-    <div class="nav-right">
-      <a routerLink="logout" class="nav-item">logout</a>
+    <div class="nav-right" *ngIf="isLoggedIn">
+      <a (click)="logout()" class="nav-item">logout</a>
     </div>
     <span class="nav-toggle">
       <span></span>

@@ -1,6 +1,6 @@
-import { reducer } from '@auth/reducers/auth.reducer';
-import * as fromAuth from '@auth/reducers/auth.reducer';
-import { AuthApiActions, AuthActions } from '@auth/actions';
+import { reducer } from '@client/auth/state/reducers/auth.reducer';
+import * as fromAuth from '@client/auth/state/reducers/auth.reducer';
+import { AuthApiActions, AuthActions } from '@client/auth/state/actions';
 
 import { User } from '@auth/models';
 
@@ -36,7 +36,7 @@ describe('AuthReducer', () => {
   describe('LOGOUT', () => {
     it('should logout a user', () => {
       const initialState = {
-        user: { name: 'test' },
+        user: { name: 'test' }
       } as fromAuth.State;
       const createAction = AuthActions.logout();
 

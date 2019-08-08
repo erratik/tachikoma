@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { Store, MemoizedSelector } from '@ngrx/store';
 import { cold } from 'jasmine-marbles';
 import { AuthGuard } from '@auth/services';
-import * as fromAuth from '@auth/reducers';
+import * as fromAuth from '@client/auth/state/reducers';
 import { provideMockStore, MockStore } from '@ngrx/store/testing';
 
 describe('Auth Guard', () => {

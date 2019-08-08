@@ -9,20 +9,21 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule, RouterState } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
-import { ROOT_REDUCERS, metaReducers } from './core/reducers';
-import { UserEffects, RouterEffects } from './core/effects';
+import { ROOT_REDUCERS, metaReducers } from '@reducers/.';
+import { UserEffects, RouterEffects } from '@effects/.';
 
-import { ClientModule } from 'src/app/client/client.module';
+import { ClientModule } from '@client/client.module';
 
 import { AppComponent } from './app.component';
-import { SpaceModule } from '@components/space/space.module';
-import { AuthenticationGuard } from './client/auth/authentication.guard';
 import { CoreModule } from './core/core.module';
 import { MainComponent } from '@containers/main/main.component';
-import { AppRoutingModule } from './core/app-routing.module';
+import { AppRoutingModule } from './app-routing.module';
 import { LoggerService } from '@services/logger.service';
 import { ErrorService } from '@services/error.service';
 import { UiModule } from './ui/ui.module';
+import { NwbDialogService, NwbDialogComponent, NwbDialogModule } from '@wizishop/ng-wizi-bulma';
+import { LogoutConfirmationDialogComponent } from '@auth/components';
+import { StateSelectorService } from '@client/services/state-selector.service';
 
 @NgModule({
   declarations: [ AppComponent ],
@@ -31,9 +32,10 @@ import { UiModule } from './ui/ui.module';
     BrowserAnimationsModule,
     StorageServiceModule,
     RouterModule,
+    NwbDialogModule,
 
     AppRoutingModule,
-    // CoreModule,
+    CoreModule,
     ClientModule,
     UiModule,
 
@@ -72,7 +74,7 @@ import { UiModule } from './ui/ui.module';
      * See: https://github.com/zalmoxisus/redux-devtools-extension
      */
     StoreDevtoolsModule.instrument({
-      name: 'NgRx Book Store App'
+      name: 'tachikoma: datawhore admin via oni api'
 
       // In a production build you would want to disable the Store Devtools
       // logOnly: environment.production,
@@ -87,9 +89,10 @@ import { UiModule } from './ui/ui.module';
      */
     EffectsModule.forRoot([ UserEffects, RouterEffects ])
   ],
-  providers: [ AuthenticationGuard, ErrorService, LoggerService ],
+  providers: [ ErrorService, LoggerService, StateSelectorService, NwbDialogService ],
   bootstrap: [ AppComponent ],
-  exports: [ MainComponent ]
+  exports: [ MainComponent ],
+  entryComponents: [ LogoutConfirmationDialogComponent, NwbDialogComponent ]
 })
 export class AppModule {
   // public currentUser: any;

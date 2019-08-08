@@ -1,7 +1,7 @@
-import { reducer } from '@auth/reducers/login-page.reducer';
-import * as fromLoginPage from '@auth/reducers/login-page.reducer';
+import { reducer } from '@auth/state/reducers/login-page.reducer';
+import * as fromLoginPage from '@auth/state/reducers/login-page.reducer';
 
-import { AuthApiActions, LoginPageActions } from '@auth/actions';
+import { AuthApiActions, LoginPageActions } from '@auth/state/actions';
 
 import { Credentials, User } from '@auth/models';
 
@@ -18,7 +18,7 @@ describe('LoginPageReducer', () => {
 
   describe('LOGIN', () => {
     it('should make pending to true', () => {
-      const user = { username: 'test' } as Credentials;
+      const user = { username: 'admin', password: 'test' } as Credentials;
       const createAction = LoginPageActions.login({ credentials: user });
 
       const result = reducer(fromLoginPage.initialState, createAction);
@@ -29,7 +29,7 @@ describe('LoginPageReducer', () => {
 
   describe('LOGIN_SUCCESS', () => {
     it('should have no error and no pending state', () => {
-      const user = { name: 'test' } as User;
+      const user = { username: 'admin' } as User;
       const createAction = AuthApiActions.loginSuccess({ user });
 
       const result = reducer(fromLoginPage.initialState, createAction);

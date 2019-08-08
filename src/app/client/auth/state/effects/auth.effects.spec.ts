@@ -9,11 +9,11 @@ import {
   LoginPageActions,
   AuthActions,
   AuthApiActions,
-} from '@auth/actions';
+} from '@client/auth/state/actions';
 
 import { Credentials, User } from '@auth/models';
 import { AuthService } from '@auth/services';
-import { AuthEffects } from '@auth/effects';
+import { AuthEffects } from '@client/auth/state/effects';
 
 describe('AuthEffects', () => {
   let effects: AuthEffects;

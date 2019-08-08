@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { Actions, ofType, createEffect } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { catchError, exhaustMap, map, tap } from 'rxjs/operators';
-import { LoginPageActions, AuthActions, AuthApiActions } from '@auth/actions';
+import { LoginPageActions, AuthActions, AuthApiActions } from '@client/auth/state/actions';
 import { Credentials } from '@auth/models';
 import { AuthService } from '@auth/services';
 import { LogoutConfirmationDialogComponent } from '@auth/components';
@@ -50,7 +50,6 @@ export class AuthEffects {
         const dialogRef = this.dialog.open<LogoutConfirmationDialogComponent, undefined, boolean>(
           LogoutConfirmationDialogComponent
         );
-
         return dialogRef.afterClosed();
       }),
       map((result) => (result ? AuthActions.logout() : AuthActions.logoutConfirmationDismiss()))

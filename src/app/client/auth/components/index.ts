@@ -1,2 +1,2 @@
-export * from './login-form.component';
-export * from './logout-confirmation-dialog.component';
+export * from './login-form/login-form.component';
+export * from './logout/logout-confirmation-dialog.component';

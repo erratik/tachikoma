@@ -13,6 +13,9 @@
     "paths": {
 
       "@config/*": ["src/app/config/*"],
+      "@constants": [
+        "src/app/core/constants/index"
+      ],
       "@environments/*": ["src/environments/*"],
       "@pipes": ["src/app/core/pipes/index"],
       "@shared/*": ["src/app/core/*"],

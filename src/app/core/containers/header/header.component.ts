@@ -1,4 +1,4 @@
-import { Component, OnInit, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { Component, OnInit, CUSTOM_ELEMENTS_SCHEMA, Output, EventEmitter, Input } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -6,7 +6,15 @@ import { Component, OnInit, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
   styleUrls: [ './header.component.scss' ]
 })
 export class HeaderComponent implements OnInit {
+  @Input() isLoggedIn = false;
+  @Output() userLogout = new EventEmitter<void>();
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log(this.isLoggedIn);
+  }
+
+  logout() {
+    this.userLogout.emit();
+  }
 }
