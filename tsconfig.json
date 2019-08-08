@@ -11,11 +11,59 @@
     "moduleResolution": "node",
     "importHelpers": true,
     "paths": {
-      "@shared/*": ["src/app/shared/*"],
-      "@ui/*": ["src/app/ui/*"],
-      "@ui-views/*": ["src/app/ui/views/*"],
-      "@ui-components/*": ["src/app/ui/components/*"],
-      "@app/*": ["src/app/*"]
+
+      "@config/*": ["src/app/config/*"],
+      "@environments/*": ["src/environments/*"],
+      "@pipes": ["src/app/core/pipes/index"],
+      "@shared/*": ["src/app/core/*"],
+      "@client/*": ["src/app/client/*"],
+
+      "@auth/*": ["src/app/client/auth/*"],
+
+      "@components/*": [
+        "src/app/core/components/*",
+        "src/app/ui/components/*"
+      ],
+      "@effects/*": [
+        "src/app/core/effects/*"
+      ],
+      "@services/*": [
+        "src/app/core/services/*"
+      ],
+      "@resolvers/*": ["src/app/ui/resolvers/*"],
+      "@reducers/*": [
+        "src/app/core/reducers/*",
+        "src/app/ui/reducers/*",
+      ],
+      "@containers/*": ["src/app/core/containers/*"],
+      "@actions": [
+        "src/app/core/actions/index"
+      ],
+
+      "@ngrx/data": ["./modules/data"],
+      "@ngrx/data/schematics-core": ["./modules/data/schematics-core"],
+      "@ngrx/effects/schematics-core": ["./modules/effects/schematics-core"],
+      "@ngrx/store/schematics-core": ["./modules/store/schematics-core"],
+
+      "@ngrx/effects": ["./modules/effects"],
+      "@ngrx/effects/testing": ["./modules/effects/testing"],
+
+      "@ngrx/store": ["./modules/store"],
+      "@ngrx/store/testing": ["./modules/store/testing"],
+      "@ngrx/store-devtools": ["./modules/store-devtools"],
+      "@ngrx/store-devtools/schematics-core": [
+        "./modules/store-devtools/schematics-core"
+      ],
+      "@ngrx/router-store": ["./modules/router-store"],
+      "@ngrx/router-store/schematics-core": [
+        "./modules/router-store/schematics-core"
+      ],
+      "@ngrx/entity": ["./modules/entity"],
+      "@ngrx/entity/schematics-core": ["./modules/entity/schematics-core"],
+      "@ngrx/schematics": ["./modules/schematics"],
+      "@ngrx/schematics/schematics-core": [
+        "./modules/schematics/schematics-core"
+      ],
     },
     "target": "es2015",
     "typeRoots": [

@@ -61,7 +61,8 @@
           "options": {
             "browserTarget": "tachikoma:build",
             "proxyConfig": "src/proxy.conf.json",
-            "host": "datawhore.erratik.ca"
+            "host": "datawhore.erratik.ca",
+            "port": 4529
           },
           "configurations": {
             "production": {

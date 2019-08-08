@@ -1,7 +1,40 @@
+<div class="columns">
+  <div class="column is-12">
+    <h1 class="subtitle has-text-grey">Basic combine with router</h1>
+
+    <button (click)="tabBasicIndex = 0" class="button is-warning">Set Pictures</button>
+
+    <p>Selected index: {{ tabBasicIndex }}</p>
+
+    <nwb-tabs [(selectedIndex)]="tabBasicIndex" (selectedIndexChange)="tabBasicIndexChange($event)">
+      <nwb-tab [label]="'Pictures'">
+        <p>Your Pictures are here!</p>
+      </nwb-tab>
+
+      <nwb-tab [label]="'Music'">
+        <p>Your Music is here!</p>
+      </nwb-tab>
+
+      <nwb-tab [label]="'Videos'">
+        <p>Your Videos are here!</p>
+      </nwb-tab>
+      <nwb-tab [label]="'Documents'">
+        <p>Your Documents are here!</p>
+      </nwb-tab>
+    </nwb-tabs>
+  </div>
+</div>
 <hr>
 <h4>{{space.name}} Detail</h4>
-<label>Name:
-  <input [(ngModel)]="space.icon">
-</label>
-<br />
-<label>Power: <input [(ngModel)]="space.name"></label>
+<ul>
+  <li>Created: {{space.createdAt}}</li>
+  <li>Modified: {{space.updatedAt}}</li>
+</ul>
+<h4>Profiles</h4>
+<div *ngFor="let profile of space.profiles">
+  <pre>{{profile | json}}</pre>
+</div>
+<pre>{{space.settings | json}}</pre>
+
+<!-- <label>Power: <input [(ngModel)]="space.name"></label> -->
+<!-- <input [(ngModel)]="space.icon"> -->
