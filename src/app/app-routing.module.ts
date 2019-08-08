@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { SpaceResolver } from '@resolvers/entity.resolver';
-import { SpaceListComponent } from '@components/space/space-list/space-list.component';
 import { AuthGuard } from '@client/auth/services';
 
 const routes: Routes = [
@@ -13,17 +11,19 @@ const routes: Routes = [
   // },
   {
     path: 'spaces',
-    component: SpaceListComponent,
-    canActivate: [ AuthGuard ],
+    data: { title: 'spaces' },
+    // component: SpaceListComponent,
+    // canActivate: [ AuthGuard ],
     // resolve: {
     //   spaces: SpaceResolver
     // },
     children: [
       {
         path: '',
-        loadChildren: '@components/space/space.module#SpaceModule',
-        canActivateChild: [ AuthGuard ],
-        resolve: [ SpaceResolver ]
+        loadChildren: '@entities/spaces/space.module#SpaceModule',
+        // loadChildren: '@entities/books/books.module#BooksModule',
+        canActivateChild: [ AuthGuard ]
+        // resolve: [SpaceResolver],
       }
       // {
       //   path: 'address',

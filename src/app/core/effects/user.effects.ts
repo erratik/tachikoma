@@ -14,7 +14,7 @@ export class UserEffects {
 
   idle$ = createEffect(() =>
     merge(this.clicks$, this.keys$, this.mouse$).pipe(
-      switchMapTo(timer(5 * 60 * 1000)), // 5 minute inactivity timeout
+      switchMapTo(timer(180 * 60 * 1000)), // 3-hour inactivity timeout
       map(() => UserActions.idleTimeout())
     )
   );

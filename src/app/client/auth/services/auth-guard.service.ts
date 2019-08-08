@@ -9,7 +9,7 @@ import { LoggerService } from '@shared/services';
 import { Roles } from '@constants';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
   constructor(private store: Store<fromAuth.State>, private logger: LoggerService) {}
@@ -17,7 +17,7 @@ export class AuthGuard implements CanActivate {
   canActivate(): Observable<boolean> {
     return this.store.pipe(
       select(fromAuth.getLoggedIn),
-      map((isAuthed) => {
+      map(isAuthed => {
         if (!isAuthed) {
           this.store.dispatch(AuthApiActions.loginRedirect());
           return false;
@@ -31,7 +31,7 @@ export class AuthGuard implements CanActivate {
   canActivateChild(state: RouterStateSnapshot): Observable<boolean> {
     return this.store.pipe(
       select(fromAuth.getUser),
-      map((user) => {
+      map(user => {
         if (user.role === Roles.Admin) {
           return true;
         }

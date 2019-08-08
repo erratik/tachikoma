@@ -43,20 +43,17 @@ export class OniService {
     this.currentUser$.subscribe();
   }
 
-  public getAll<T>(options: { [key: string]: string }): PromiseLike<T[]> {
-    const items = this.http
+  public getAll<T>(options: { [key: string]: string }): Observable<T[]> {
+    const items$ = this.http
       .get<T[]>(options.endpoint, { headers: this.headers })
-      .pipe(tap((data) => data, (error) => this.errorService.handleError(error)))
-      .toPromise();
-    return Promise.resolve(items);
+      .pipe(tap((data) => data, (error) => this.errorService.handleError(error)));
+    return items$;
   }
 
-  public getOne<T>(options: { [key: string]: string }): PromiseLike<T> {
-    const headers = new HttpHeaders({ Authorization: `Bearer ${this.token}` });
-    const items = this.http
+  public getOne<T>(options: { [key: string]: string }): Observable<T> {
+    const item$ = this.http
       .get<T>(options.endpoint, { headers: this.headers })
-      .pipe(tap((data) => data, (error) => this.errorService.handleError(error)))
-      .toPromise();
-    return Promise.resolve(items);
+      .pipe(tap((data) => data, (error) => this.errorService.handleError(error)));
+    return item$;
   }
 }

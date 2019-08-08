@@ -3,7 +3,7 @@ import { Component, OnInit, CUSTOM_ELEMENTS_SCHEMA, Output, EventEmitter, Input 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: [ './header.component.scss' ]
+  styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
   @Input() isLoggedIn = false;
@@ -11,7 +11,7 @@ export class HeaderComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
-    console.log(this.isLoggedIn);
+    // console.log(this.isLoggedIn);
   }
 
   logout() {

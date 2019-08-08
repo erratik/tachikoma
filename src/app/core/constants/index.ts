@@ -1,5 +1,5 @@
 export enum Application {
-  name = 'datawhore'
+  Name = 'datawhore'
 }
 
 export * from './user.constants';

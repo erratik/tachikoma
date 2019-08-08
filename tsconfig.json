@@ -16,6 +16,9 @@
       "@constants": [
         "src/app/core/constants/index"
       ],
+      "@fromRoot": [
+        "src/app/core/reducers"
+      ],
       "@environments/*": ["src/environments/*"],
       "@pipes": ["src/app/core/pipes/index"],
       "@shared/*": ["src/app/core/*"],
@@ -25,7 +28,7 @@
 
       "@components/*": [
         "src/app/core/components/*",
-        "src/app/ui/components/*"
+        "src/app/ui/components/*",
       ],
       "@effects/*": [
         "src/app/core/effects/*"
@@ -38,6 +41,7 @@
         "src/app/core/reducers/*",
         "src/app/ui/reducers/*",
       ],
+      "@entities/*": ["src/app/client/entities/*"],
       "@containers/*": ["src/app/core/containers/*"],
       "@actions": [
         "src/app/core/actions/index"

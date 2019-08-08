@@ -17,16 +17,35 @@ export interface State extends fromRoot.State {
 export function reducers(state: AuthState | undefined, action: Action) {
   return combineReducers({
     [fromAuth.statusFeatureKey]: fromAuth.reducer,
-    [fromLoginPage.loginPageFeatureKey]: fromLoginPage.reducer
+    [fromLoginPage.loginPageFeatureKey]: fromLoginPage.reducer,
   })(state, action);
 }
 
 export const selectAuthState = createFeatureSelector<State, AuthState>(authFeatureKey);
 
-export const selectAuthStatusState = createSelector(selectAuthState, (state: AuthState) => state.status);
-export const getUser = createSelector(selectAuthStatusState, fromAuth.getUser);
-export const getLoggedIn = createSelector(getUser, (user) => !!user);
+export const selectAuthStatusState = createSelector(
+  selectAuthState,
+  (state: AuthState) => state.status
+);
+export const getUser = createSelector(
+  selectAuthStatusState,
+  fromAuth.getUser
+);
+export const getLoggedIn = createSelector(
+  getUser,
+  user => !!user
+);
 
-export const selectLoginPageState = createSelector(selectAuthState, (state: AuthState) => state.loginPage);
-export const getLoginPageError = createSelector(selectLoginPageState, fromLoginPage.getError);
-export const getLoginPagePending = createSelector(selectLoginPageState, fromLoginPage.getPending);
+export const selectLoginPageState = createSelector(
+  selectAuthState,
+  (state: AuthState) => state.loginPage
+);
+export const getLoginPageError = createSelector(
+  selectLoginPageState,
+  fromLoginPage.getError
+);
+export const getLoginPagePending = createSelector(
+  selectLoginPageState,
+  fromLoginPage.getPending
+);
+

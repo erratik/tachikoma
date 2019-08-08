@@ -5,30 +5,29 @@ import { Title } from '@angular/platform-browser';
 import { tap, filter, map, mergeMap } from 'rxjs/operators';
 
 import { createEffect } from '@ngrx/effects';
+import { Application } from '@constants';
 
 @Injectable()
 export class RouterEffects {
   updateTitle$ = createEffect(
     () =>
       this.router.events.pipe(
-        filter(event => event instanceof NavigationEnd),
+        filter((event) => event instanceof NavigationEnd),
         map(() => {
           let route = this.activatedRoute;
-          while (route.firstChild) { route = route.firstChild; }
+          while (route.firstChild) {
+            route = route.firstChild;
+          }
           return route;
         }),
-        mergeMap(route => route.data),
-        map(data => `Book Collection - ${data.title}`),
-        tap(title => this.titleService.setTitle(title))
+        mergeMap((route) => route.data),
+        map((data) => `${Application.Name} - ${data.title}`),
+        tap((title) => this.titleService.setTitle(title))
       ),
     {
-      dispatch: false,
+      dispatch: false
     }
   );
 
-  constructor(
-    private router: Router,
-    private titleService: Title,
-    private activatedRoute: ActivatedRoute
-  ) {}
+  constructor(private router: Router, private titleService: Title, private activatedRoute: ActivatedRoute) {}
 }

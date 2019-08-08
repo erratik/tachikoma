@@ -5,6 +5,7 @@ import { TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
 
 import { RouterEffects } from '@effects/.';
+import { Application } from '@constants';
 
 describe('RouterEffects', () => {
   let effects: RouterEffects;
@@ -33,7 +34,7 @@ describe('RouterEffects', () => {
   describe('updateTitle$', () => {
     it('should update the title on router navigation', () => {
       effects.updateTitle$.subscribe();
-      expect(titleService.setTitle).toHaveBeenCalledWith('Book Collection - Search');
+      expect(titleService.setTitle).toHaveBeenCalledWith(`${Application.name} - Search`);
     });
   });
 });
