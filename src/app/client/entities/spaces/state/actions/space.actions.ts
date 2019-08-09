@@ -3,6 +3,7 @@ import { Space } from '../../models';
 import { SpaceConstants } from '../../space.constants';
 
 export const selectSpace = createAction(`[Space] Selected Space`, props<{ current: Space }>());
+
 export const fetchSpaces = createAction(
   `${SpaceConstants.fetchSpaceAction} Fetching Spaces`,
   props<{ spaces: Space[] }>()

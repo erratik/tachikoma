@@ -33,7 +33,6 @@ export class SpacePageComponent implements OnInit {
     private stateSelector: StateSelectorService,
     private logger: LoggerService
   ) {
-    // this.spaces = this.spacesService.getSpace();
     this.store.dispatch(SpacePageActions.loadSpacePage());
   }
 
@@ -41,13 +40,5 @@ export class SpacePageComponent implements OnInit {
     this.loading$ = this.stateSelector.checkFlagStatus(fromSpacePage.getSpacePageLoading);
     this.error$ = this.stateSelector.getErrorStatus(fromSpacePage.getSpacePageError);
     this.spaces$ = this.stateSelector.spaces$;
-    // this.spaces$ = this.stateSelector.spaces$;
-    // this.spaces$.subscribe();
-  }
-
-  selectSpace() {
-    this.logger.log('dootdoot');
-    // this.selectedSpace = space;
-    // this.router.navigate(['spaces', { space: this.selectedSpace.name }]);
   }
 }

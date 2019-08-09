@@ -24,6 +24,8 @@ import { UiModule } from './ui/ui.module';
 import { NwbDialogService, NwbDialogComponent, NwbDialogModule } from '@wizishop/ng-wizi-bulma';
 import { LogoutConfirmationDialogComponent } from '@auth/components';
 import { StateSelectorService } from '@client/services/state-selector.service';
+import { EntitiesModule } from './client/entities/entities.module';
+import { RouteResolver } from '@resolvers/route.resolver';
 
 @NgModule({
   declarations: [ AppComponent ],
@@ -87,9 +89,11 @@ import { StateSelectorService } from '@client/services/state-selector.service';
      *
      * See: https://ngrx.io/guide/effects#registering-root-effects
      */
-    EffectsModule.forRoot([ UserEffects, RouterEffects ])
+    EffectsModule.forRoot([ UserEffects, RouterEffects ]),
+
+    EntitiesModule
   ],
-  providers: [ ErrorService, LoggerService, StateSelectorService, NwbDialogService ],
+  providers: [ RouteResolver, ErrorService, LoggerService, StateSelectorService, NwbDialogService ],
   bootstrap: [ AppComponent ],
   exports: [ MainComponent ],
   entryComponents: [ LogoutConfirmationDialogComponent, NwbDialogComponent ]

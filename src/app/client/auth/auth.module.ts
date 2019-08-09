@@ -9,7 +9,7 @@ import * as fromAuth from '@client/auth/state/reducers';
 import { LoginPageComponent } from '@auth/containers';
 import { LoginFormComponent, LogoutConfirmationDialogComponent } from '@auth/components';
 
-import { MaterialModule } from '@client/material';
+import { MaterialModule } from '@material/.';
 import { AuthRoutingModule } from './auth-routing.module';
 
 export const COMPONENTS = [ LoginPageComponent, LoginFormComponent, LogoutConfirmationDialogComponent ];

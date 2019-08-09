@@ -5,12 +5,9 @@ import { RouterModule } from '@angular/router';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { MainComponent } from './main/main.component';
+import { SidenavComponent } from './sidenav/sidenav.component';
 
-// import * as MainContainer from './app/container.component';
-// import * as HeaderContainer from './header/header.component';
-// import * as FooterContainer from './footer/footer.component';
-
-export const COMPONENTS = [ HeaderComponent, FooterComponent, MainComponent ];
+export const COMPONENTS = [ HeaderComponent, FooterComponent, MainComponent, SidenavComponent ];
 
 @NgModule({
   declarations: COMPONENTS,

@@ -21,10 +21,14 @@
       ],
       "@environments/*": ["src/environments/*"],
       "@pipes": ["src/app/core/pipes/index"],
-      "@shared/*": ["src/app/core/*"],
+      "@shared/*": [
+        "src/app/core/*",
+        "src/app/ui/admin/*"
+      ],
       "@client/*": ["src/app/client/*"],
 
       "@auth/*": ["src/app/client/auth/*"],
+      "@material/*": ["src/app/ui/material/*"],
 
       "@components/*": [
         "src/app/core/components/*",
@@ -43,6 +47,11 @@
       ],
       "@entities/*": ["src/app/client/entities/*"],
       "@containers/*": ["src/app/core/containers/*"],
+
+      "@admin-actions/*": ["src/app/ui/admin/state/actions/*"],
+      "@admin-effects/*": ["src/app/ui/admin/state/effects*"],
+      "@admin-reducers/*": ["src/app/ui/admin/state/reducers/*"],
+
       "@actions": [
         "src/app/core/actions/index"
       ],

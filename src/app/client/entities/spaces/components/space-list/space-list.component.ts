@@ -3,6 +3,8 @@ import { LoggerService } from '@shared/services';
 import { Space } from '../../models';
 import { Store } from '@ngrx/store';
 import * as fromSpace from '../../state/reducers';
+import { ViewSpacePageActions } from '@shared/state/actions';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'oni-space-list',
@@ -14,22 +16,11 @@ export class SpaceListComponent implements OnInit {
   // selectedSpace: Space;
   // spaces: Space[];
 
-  // private spaceService: SpaceService,
-  // private spacesService: SpaceService,
-  // private route: ActivatedRoute,
-  // private router: Router
-  constructor(private store: Store<fromSpace.State>, private logger: LoggerService) {
-    // this.spaces = this.settingsService.getSpace();
-  }
+  constructor(private store: Store<fromSpace.State>, private logger: LoggerService, private router: Router) {}
 
-  ngOnInit() {
-    // console.log('spaces', this.spaces);
-  }
+  ngOnInit() {}
 
   selectSpace(space: Space) {
-    this.logger.log('dootdoot');
-
-    // this.selectedSpace = space;
-    // this.router.navigate(['spaces', { space: this.selectedSpace.name }]);
+    this.store.dispatch(ViewSpacePageActions.selectSpace({ id: space.name }));
   }
 }
