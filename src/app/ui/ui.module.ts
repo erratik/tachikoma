@@ -8,17 +8,13 @@ import { HeaderComponent } from '@containers/header/header.component';
 import { FooterComponent } from '@containers/footer/footer.component';
 import { MainComponent } from '@containers/main/main.component';
 import { RouterModule } from '@angular/router';
+import { EntitiesModule } from '@client/entities/entities.module';
+import { AdminModule } from '@shared/admin.module';
 
 export const COMPONENTS = [ HeaderComponent, FooterComponent, MainComponent ];
 @NgModule({
   // declarations: [ HeaderComponent, FooterComponent ],
-  imports: [
-    CommonModule,
-    RouterModule,
-    ClientModule,
-    ContainersModule
-    // SpaceModule
-  ],
+  imports: [ CommonModule, RouterModule, ClientModule, ContainersModule, EntitiesModule, AdminModule ],
   providers: [ LoggerService ],
   exports: COMPONENTS,
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
