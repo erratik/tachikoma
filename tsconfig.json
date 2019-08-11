@@ -14,7 +14,8 @@
 
       "@config/*": ["src/app/config/*"],
       "@constants": [
-        "src/app/core/constants/index"
+        "src/app/core/constants/index",
+        "src/app/client/entities/spaces/space.constants"
       ],
       "@fromRoot": [
         "src/app/core/reducers"

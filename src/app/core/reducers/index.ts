@@ -18,6 +18,7 @@ import * as fromRouter from '@ngrx/router-store';
  */
 
 import * as fromLayout from '@reducers/layout.reducer';
+import * as fromSpace from '@entities/spaces/state/reducers/space.reducer';
 import { InjectionToken } from '@angular/core';
 import { environment } from '@environments/environment';
 
@@ -26,6 +27,7 @@ import { environment } from '@environments/environment';
  * our top level state interface is just a map of keys to inner state types.
  */
 export interface State {
+  [fromSpace.spacesFeatureKey]: fromSpace.State;
   [fromLayout.layoutFeatureKey]: fromLayout.State;
   router: fromRouter.RouterReducerState<any>;
 }
@@ -37,6 +39,7 @@ export interface State {
  */
 export const ROOT_REDUCERS = new InjectionToken<ActionReducerMap<State, Action>>('Root reducers token', {
   factory: () => ({
+    [fromSpace.spacesFeatureKey]: fromSpace.reducer,
     [fromLayout.layoutFeatureKey]: fromLayout.reducer,
     router: fromRouter.routerReducer
   })

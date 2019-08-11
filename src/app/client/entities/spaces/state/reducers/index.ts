@@ -4,7 +4,7 @@ import * as fromRoot from '@reducers/.';
 import * as fromSpace from '@entities/spaces/state/reducers/space.reducer';
 import * as fromSpacePage from '../reducers/space-page.reducer';
 
-export const spaceFeatureKey = 'space';
+export const spaceFeatureKey = 'pages';
 
 export interface SpaceState {
   [fromSpace.spacesFeatureKey]: fromSpace.State;
@@ -35,6 +35,6 @@ export const getSpacePageLoading = createSelector(spacePageState, fromSpacePage.
 /**
  * Space Reducers
  */
-export const spaceState = createSelector(mainState, (state: SpaceState) => state.space);
+export const spaceState = createSelector(mainState, (state: SpaceState) => state.spaces);
 
 export const getSpaces = createSelector(spaceState, fromSpace.getSpaces);

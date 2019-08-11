@@ -1,5 +1,4 @@
 // import * as AuthActions from './two.actions';
-import * as SpacePageActions from './space-page.actions';
-import * as SpaceActions from './space.actions';
+import * as SpaceApiActions from './space-api.actions';
 
-export { SpacePageActions, SpaceActions };
+export { SpaceApiActions };

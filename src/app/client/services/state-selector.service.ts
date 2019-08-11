@@ -16,6 +16,12 @@ import { Settings } from '@client/entities/settings/models';
 export class StateSelectorService {
   getUser$: Observable<User> = this.store.pipe(select(fromAuth.getUser), map((user) => user), take(1));
 
+  layoutState$: Observable<any> = this.store.pipe(
+    select(fromRoot.getLayoutState),
+    map((isAuthed) => isAuthed),
+    take(1)
+  );
+
   isLoggedIn$: Observable<boolean> = this.store.pipe(
     select(fromAuth.getLoggedIn),
     map((isAuthed) => !!isAuthed),

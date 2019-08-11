@@ -3,12 +3,13 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { asyncScheduler, EMPTY as empty, of, combineLatest } from 'rxjs';
 import { map, switchMap, tap } from 'rxjs/operators';
-import { FindSpacePageActions, SpacesApiActions, AdminSpaceActions, ViewSpacePageActions } from '@admin-actions/.';
+import { AdminSpaceActions, ViewSpacePageActions } from '@admin-actions/.';
+// import { FindSpacePageActions, SpacesApiActions } from '@admin-actions/.';
 import { Space } from '@client/entities/spaces/models';
 import { SpaceService } from '@client/services/space.service';
 import { StateSelectorService } from '@client/services';
 import { LoggerService } from '@shared/services';
-import { SpaceActions } from '@client/entities/spaces/state/actions';
+
 // import * as fromSpace from '@entities/spaces/state/reducers/space.reducer';
 /**
  * Effects offer a way to isolate and easily test side-effects within your
@@ -51,7 +52,7 @@ export class SpaceEffects {
 
   selectSpace$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(ViewSpacePageActions.selectSpace),
+      ofType(AdminSpaceActions.selectSpace),
       switchMap(({ id }) => {
         this.logger.log(`[SELECTING SPACE] ${id}`);
         return this.stateSelector.spaces$.pipe(

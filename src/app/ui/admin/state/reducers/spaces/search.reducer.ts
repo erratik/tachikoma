@@ -1,4 +1,4 @@
-import { SpacesApiActions, FindSpacePageActions } from '@admin-actions/.';
+import { FindSpacePageActions } from '@admin-actions/.';
 import { createReducer, on } from '@ngrx/store';
 
 export const searchFeatureKey = 'search';
@@ -33,18 +33,18 @@ export const reducer = createReducer(
           error: '',
           query
         };
-  }),
-  on(SpacesApiActions.searchSuccess, (state, { spaces }) => ({
-    ids: spaces.map((space) => space.id),
-    loading: false,
-    error: '',
-    query: state.query
-  })),
-  on(SpacesApiActions.searchFailure, (state, { errorMsg }) => ({
-    ...state,
-    loading: false,
-    error: errorMsg
-  }))
+  })
+  // on(SpacesApiActions.searchSuccess, (state, { spaces }) => ({
+  //   ids: spaces.map((space) => space.id),
+  //   loading: false,
+  //   error: '',
+  //   query: state.query
+  // })),
+  // on(SpacesApiActions.searchFailure, (state, { errorMsg }) => ({
+  //   ...state,
+  //   loading: false,
+  //   error: errorMsg
+  // }))
 );
 
 export const getIds = (state: State) => state.ids;

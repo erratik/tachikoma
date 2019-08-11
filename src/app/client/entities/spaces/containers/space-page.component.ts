@@ -8,7 +8,7 @@ import { LoggerService } from '@shared/services';
 import * as fromSpace from '@entities/spaces/state/reducers/space.reducer';
 import * as fromSpacePage from '@entities/spaces/state/reducers';
 import { Space } from '@entities/spaces/models';
-import { SpacePageActions, SpaceActions } from '@entities/spaces/state/actions';
+import { SpaceApiActions } from '@entities/spaces/state/actions';
 import { StateSelectorService } from '@client/services';
 import { tap, map, take } from 'rxjs/operators';
 
@@ -33,7 +33,7 @@ export class SpacePageComponent implements OnInit {
     private stateSelector: StateSelectorService,
     private logger: LoggerService
   ) {
-    this.store.dispatch(SpacePageActions.loadSpacePage());
+    this.store.dispatch(SpaceApiActions.initializeSpaces());
   }
 
   ngOnInit() {

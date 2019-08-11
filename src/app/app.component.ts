@@ -11,6 +11,7 @@ import { NwbDialogConfig, NwbDialogService } from '@wizishop/ng-wizi-bulma';
 import { StateSelectorService } from '@client/services/state-selector.service';
 import { Observable } from 'rxjs';
 import { map, take } from 'rxjs/operators';
+import { SpaceApiActions } from '@client/entities/spaces/state/actions';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -37,6 +38,7 @@ export class AppComponent implements OnInit {
       const token = user.authorization[0];
       if (user && Date.parse(token.expiry) > Date.now()) {
         this.store.dispatch(AuthApiActions.loginSuccess({ user }));
+        this.store.dispatch(SpaceApiActions.initializeSpaces());
       }
     }
     this.isLoggedIn$ = this.stateSelector.isLoggedIn$;

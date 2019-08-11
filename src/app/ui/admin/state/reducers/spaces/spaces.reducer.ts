@@ -1,7 +1,8 @@
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 import { createReducer, on } from '@ngrx/store';
 
-import { AdminSpaceActions, SpacesApiActions, ViewSpacePageActions } from '@admin-actions/.';
+import { AdminSpaceActions, ViewSpacePageActions } from '@admin-actions/.';
+// import { SpacesApiActions } from '@admin-actions/.';
 import { Space } from '@client/entities/spaces/models';
 
 export const spacesFeatureKey = 'spaces';
@@ -48,7 +49,7 @@ export const reducer = createReducer(
    * the collection is to be sorted, the adapter will
    * sort each record upon entry into the sorted array.
    */
-  on(SpacesApiActions.searchSuccess, (state, { spaces }) => adapter.addMany(spaces, state)),
+  // on(SpacesApiActions.searchSuccess, (state, { spaces }) => adapter.addMany(spaces, state)),
   /**
    * The addOne function provided by the created adapter
    * adds one record to the entity dictionary
@@ -57,7 +58,7 @@ export const reducer = createReducer(
    * insert the new record into the sorted array.
    */
   on(AdminSpaceActions.loadSpace, (state, { space }) => adapter.addOne(space, state)),
-  on(ViewSpacePageActions.selectSpace, (state, { id }) => ({
+  on(AdminSpaceActions.selectSpace, (state, { id }) => ({
     ...state,
     selectedSpace: id
   }))

@@ -1,4 +1,8 @@
-export enum SpaceConstants {
-  fetchSpaceAction = '[Fetch/Space]',
-  loadSpaceAction = '[Loading/Space]'
+export enum ActionPrefix {
+  fetch = '[👹 Get Spaces]',
+  load = '[👹 Load Spaces]'
+}
+
+export enum Entity {
+  name = 'Spaces'
 }

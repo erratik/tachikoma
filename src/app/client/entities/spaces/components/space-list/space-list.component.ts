@@ -3,7 +3,7 @@ import { LoggerService } from '@shared/services';
 import { Space } from '../../models';
 import { Store } from '@ngrx/store';
 import * as fromSpace from '../../state/reducers';
-import { ViewSpacePageActions } from '@shared/state/actions';
+import { ViewSpacePageActions, AdminSpaceActions } from '@shared/state/actions';
 import { Router } from '@angular/router';
 
 @Component({
@@ -21,6 +21,6 @@ export class SpaceListComponent implements OnInit {
   ngOnInit() {}
 
   selectSpace(space: Space) {
-    this.store.dispatch(ViewSpacePageActions.selectSpace({ id: space.name }));
+    this.store.dispatch(AdminSpaceActions.selectSpace({ id: space.name }));
   }
 }

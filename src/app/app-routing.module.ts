@@ -7,7 +7,7 @@ const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: '/spaces'
+    redirectTo: '/settings'
     // resolve: [ RouteResolver ],
     // runGuardsAndResolvers: 'always'
   },

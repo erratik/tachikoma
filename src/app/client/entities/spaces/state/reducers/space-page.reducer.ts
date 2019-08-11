@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { SpacePageActions, SpaceActions } from '../actions';
+import { SpaceApiActions } from '../actions';
 
 export const spacePageFeatureKey = 'spacePage';
 
@@ -15,17 +15,17 @@ export const initialState: State = {
 
 export const reducer = createReducer(
   initialState,
-  on(SpacePageActions.loadSpaces, (state) => ({
+  on(SpaceApiActions.loadSpaces, (state) => ({
     ...state,
     error: null,
     pending: true
   })),
-  on(SpacePageActions.loadSpacesSuccess, (state) => ({
+  on(SpaceApiActions.loadSpacesSuccess, (state) => ({
     ...state,
     error: null,
     pending: false
   })),
-  on(SpacePageActions.loadSpacesFailure, (state, { error }) => ({
+  on(SpaceApiActions.loadSpacesFailure, (state, { error }) => ({
     ...state,
     error,
     pending: false
