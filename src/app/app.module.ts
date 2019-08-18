@@ -14,7 +14,7 @@ import { UserEffects, RouterEffects } from '@shared/state/effects';
 
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
-import { MainComponent } from '@containers/main/main.component';
+import { MainComponent } from '@shared/containers/main/main.component';
 import { AppRoutingModule } from './app-routing.module';
 import { LoggerService } from '@services/logger.service';
 import { ErrorService } from '@services/error.service';

@@ -10,7 +10,7 @@ import * as fromPage from '@shared/state/reducers/pages';
 import { Space } from '@shared/models';
 import { StateSelectorService } from 'src/app/ui/services';
 import { tap, map, take } from 'rxjs/operators';
-import { WrapperComponent } from '../wrapper/wrapper.component';
+import { BaseDataComponent } from '../../components/base/base-data.component';
 import * as fromRoot from '@shared/state/reducers';
 
 @Component({
@@ -18,7 +18,7 @@ import * as fromRoot from '@shared/state/reducers';
   templateUrl: './home-page.component.html',
   styles: []
 })
-export class HomePageComponent extends WrapperComponent implements OnInit {
+export class HomePageComponent extends BaseDataComponent implements OnInit {
   constructor(
     public stateSelector: StateSelectorService,
     public store: Store<fromPage.State | fromRoot.State | fromSpace.State>,

@@ -2,8 +2,7 @@ import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 import { createReducer, on } from '@ngrx/store';
 
 import { AdminSpaceActions, ViewSpacePageActions } from '@admin-actions/.';
-// import { SpacesApiActions } from '@admin-actions/.';
-import { Space } from '@client/entities/spaces/models';
+import { Space } from '@models';
 
 export const spacesFeatureKey = 'spaces';
 

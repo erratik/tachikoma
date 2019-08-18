@@ -15,7 +15,7 @@ import * as fromSpace from '@shared/state/reducers/spaces/space.reducer';
   template: '<div></div>',
   styles: []
 })
-export class WrapperComponent implements OnInit {
+export class BaseDataComponent implements OnInit {
   loading$: Observable<boolean>;
   error$: Observable<string>;
 

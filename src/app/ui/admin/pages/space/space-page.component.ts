@@ -11,7 +11,7 @@ import * as fromRoot from '@shared/state/reducers';
 import { Space } from '@shared/models';
 import { StateSelectorService } from 'src/app/ui/services';
 import { tap, map, take } from 'rxjs/operators';
-import { WrapperComponent } from '../wrapper/wrapper.component';
+import { BaseDataComponent } from '../../components/base/base-data.component';
 import { AdminSpaceActions } from '@shared/state/actions/spaces';
 
 @Component({
@@ -19,7 +19,7 @@ import { AdminSpaceActions } from '@shared/state/actions/spaces';
   templateUrl: './space-page.component.html',
   styles: []
 })
-export class SpacePageComponent extends WrapperComponent implements OnInit {
+export class SpacePageComponent extends BaseDataComponent implements OnInit {
   // spaces$: Observable<Space[]>;
   // loading$: Observable<boolean>;
   // error$: Observable<string>;

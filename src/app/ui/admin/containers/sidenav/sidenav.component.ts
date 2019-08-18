@@ -11,13 +11,13 @@ import { AdminSpaceActions } from '@shared/state/actions/spaces';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { map, withLatestFrom } from 'rxjs/operators';
 import { MenuActions } from '@constants';
-import { WrapperComponent } from '@shared/pages/wrapper/wrapper.component';
+import { BaseDataComponent } from '@shared/components/base/base-data.component';
 @Component({
   selector: 'oni-sidenav',
   templateUrl: './sidenav.component.html',
   styleUrls: [ './sidenav.component.scss' ]
 })
-export class SidenavComponent extends WrapperComponent implements OnInit {
+export class SidenavComponent extends BaseDataComponent implements OnInit {
   @Input() spaces: Space[];
   @Input() selected: Space;
   @Input() layoutState: fromLayout.State;

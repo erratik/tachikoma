@@ -1,11 +1,11 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ContainersModule } from '@containers/containers.module';
+import { ContainersModule } from '@shared/containers/containers.module';
 
 import { LoggerService } from '@services/logger.service';
-import { HeaderComponent } from '@containers/header/header.component';
-import { FooterComponent } from '@containers/footer/footer.component';
-import { MainComponent } from '@containers/main/main.component';
+import { HeaderComponent } from '@shared/containers/header/header.component';
+import { FooterComponent } from '@shared/containers/footer/footer.component';
+import { MainComponent } from '@shared/containers/main/main.component';
 import { RouterModule } from '@angular/router';
 import { AdminModule } from '@shared/admin.module';
 import { SidenavComponent } from '@shared/containers/sidenav/sidenav.component';
