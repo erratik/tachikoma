@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomePageComponent } from './pages/home/home-page.component';
 import { SettingsResolver, SpaceResolver } from '@resolvers/entity.resolver';
-import { SpacePageComponent } from './pages/space/space-page.component';
+import { SpacePageComponent } from './pages';
 // import { SpaceResolver } from '@resolvers/entity.resolver';
 
 const routes: Routes = [

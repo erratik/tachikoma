@@ -13,10 +13,11 @@ import { NotFoundComponent } from '@shared/containers';
 import { OniService, StateSelectorService } from './services';
 import { ErrorService } from '@shared/services';
 import { HttpClientModule } from '@angular/common/http';
+import ProfileDisplayDirective from '@shared/directives/profile-display.directive';
 
 export const COMPONENTS = [ HeaderComponent, FooterComponent, MainComponent, SidenavComponent, NotFoundComponent ];
 @NgModule({
-  // declarations: [ HeaderComponent, FooterComponent ],
+  declarations: [],
   imports: [ CommonModule, HttpClientModule, RouterModule, ContainersModule, AdminModule ],
   providers: [ OniService, StateSelectorService, ErrorService, LoggerService ],
   exports: COMPONENTS,

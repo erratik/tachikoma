@@ -1,15 +1,37 @@
 <oni-page-header [data$]="data$"></oni-page-header>
-<div class="container">
 
-  <pre>{{space | json}}</pre>
-  <!-- Router Outlet Here -->
-  <!-- <ng-content class="section"></ng-content> -->
-  <section class="columns">
-    <div class="column">
-      {{loading$ | async}}
+<oni-content [loading$]="loading$">
+  <ng-container>
+    <div class="column is-three-fifths">
+      <pre>{{space | json}}</pre>
     </div>
     <div class="column">
-      2
+      <div class="box">
+        <p class="title is-5 is-uppercase">Space Information</p>
+        <p class="subtitle is-6 is-uppercase is-size-7">Document Details</p>
+        <div *ngIf="space; else loadingSpace">
+
+          <ul>
+            <!-- <li>Created: {{space.createdAt |  date:'medium'}}</li> -->
+            <li>Modified: {{space.updatedAt |  date:'medium'}}</li>
+            <li>
+            </li>
+          </ul>
+        </div>
+        <ng-template #loadingSpace>
+          <progress class="progress is-small is-primary" max="100">25%</progress>
+        </ng-template>
+      </div>
+      <div class="box" *ngIf="!!space && space.profiles">
+        <p class="title is-5 is-uppercase">Profile Information</p>
+        <p class="subtitle is-6 is-uppercase is-size-7">Your <span
+            class="has-badge-success has-badge-inline has-badge-rounded"
+            [attr.data-badge]="profiles.length">Profiles</span></p>
+
+
+        <oni-profile [space]="space"></oni-profile>
+      </div>
     </div>
-  </section>
-</div>
+  </ng-container>
+
+</oni-content>

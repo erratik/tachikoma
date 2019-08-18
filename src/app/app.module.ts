@@ -23,6 +23,7 @@ import { NwbDialogService, NwbDialogComponent, NwbDialogModule } from '@wizishop
 import { LogoutConfirmationDialogComponent } from '@shared/auth/components';
 import { StateSelectorService } from 'src/app/ui/services/state-selector.service';
 import { SettingsResolver, SpaceResolver } from '@resolvers/entity.resolver.ts';
+import ProfileDisplayDirective from '@shared/directives/profile-display.directive';
 
 @NgModule({
   declarations: [ AppComponent ],

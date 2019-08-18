@@ -7,21 +7,22 @@ import { SpaceEffects } from '@shared/state/effects/spaces';
 import * as fromSpace from '@shared/state/reducers/spaces/space.reducer';
 import * as fromSettings from '@shared/state/reducers/spaces/settings.reducer';
 
-import { SpacePageComponent } from './pages/space/space-page.component';
-import { HomePageComponent } from './pages/home/home-page.component';
-
 import { AdminRoutingModule } from './admin-routing.module';
 import { SettingsEffects } from './state/effects/settings';
-import { RouterModule, RouterStateSnapshot } from '@angular/router';
-import { PageHeaderComponent } from './components/page-header/page-header.component';
+import { RouterModule } from '@angular/router';
+import { ContentComponent, PageHeaderComponent, ProfileComponent, OniTplInjectorComponent } from './components';
+import { SpacePageComponent, HomePageComponent } from './pages';
+import ProfileDisplayDirective from './directives/profile-display.directive';
 
-// import { NwbTabsModule } from '@wizishop/ng-wizi-bulma';
-// import { SpaceRoutingModule } from './space-routing.module';
-
-// import { SpaceDetailComponent } from './components/space-details/space-detail.component';
-// import { SpaceListComponent } from './components/space-list/space-list.component';
-
-export const COMPONENTS = [ SpacePageComponent, HomePageComponent, PageHeaderComponent ];
+export const COMPONENTS = [
+  SpacePageComponent,
+  HomePageComponent,
+  PageHeaderComponent,
+  ContentComponent,
+  ProfileComponent,
+  ProfileDisplayDirective,
+  OniTplInjectorComponent
+];
 
 @NgModule({
   declarations: COMPONENTS,
@@ -35,7 +36,6 @@ export const COMPONENTS = [ SpacePageComponent, HomePageComponent, PageHeaderCom
     EffectsModule.forFeature([ SpaceEffects, SettingsEffects ])
   ],
   exports: COMPONENTS,
-  // providers: [RouterStateSnapshot],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
 export class AdminModule {}

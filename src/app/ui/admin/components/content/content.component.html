@@ -1,0 +1,9 @@
+<div class="container">
+  <section class="columns" *ngIf="!(loading$ | async); else elseBlock">
+    <ng-content></ng-content>
+  </section>
+
+  <ng-template #elseBlock>
+    <progress class="progress is-small is-primary" max="100">25%</progress>
+  </ng-template>
+</div>

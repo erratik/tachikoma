@@ -29,8 +29,8 @@ export class BaseDataComponent implements OnInit {
     public route?: ActivatedRoute,
     public logger?: LoggerService
   ) {
-    // this.loading$ = this.stateSelector.checkFlagStatus(fromPage.getSpacePageLoading);
-    // this.error$ = this.stateSelector.getErrorStatus(fromPage.getSpacePageError);
+    this.loading$ = this.stateSelector.checkFlagStatus(fromPage.getSpacePageLoading);
+    this.error$ = this.stateSelector.getErrorStatus(fromPage.getSpacePageError);
   }
 
   ngOnInit() {
