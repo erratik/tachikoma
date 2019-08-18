@@ -18,17 +18,18 @@
         "src/app/client/entities/spaces/space.constants"
       ],
       "@fromRoot": [
-        "src/app/core/reducers"
+        "src/app/core/state/reducers"
       ],
       "@environments/*": ["src/environments/*"],
       "@pipes": ["src/app/core/pipes/index"],
+      "@models": ["src/app/core/models/index"],
       "@shared/*": [
         "src/app/core/*",
         "src/app/ui/admin/*"
       ],
       "@client/*": ["src/app/client/*"],
 
-      "@auth/*": ["src/app/client/auth/*"],
+      "@auth/*": ["src/app/core/auth/*"],
       "@material/*": ["src/app/ui/material/*"],
 
       "@components/*": [
@@ -36,14 +37,14 @@
         "src/app/ui/components/*",
       ],
       "@effects/*": [
-        "src/app/core/effects/*"
+        "src/app/core/state/effects/*"
       ],
       "@services/*": [
         "src/app/core/services/*"
       ],
       "@resolvers/*": ["src/app/ui/resolvers/*"],
       "@reducers/*": [
-        "src/app/core/reducers/*",
+        "src/app/core/state/reducers/*",
         "src/app/ui/reducers/*",
       ],
       "@entities/*": ["src/app/client/entities/*"],
@@ -52,9 +53,10 @@
       "@admin-actions/*": ["src/app/ui/admin/state/actions/*"],
       "@admin-effects/*": ["src/app/ui/admin/state/effects*"],
       "@admin-reducers/*": ["src/app/ui/admin/state/reducers/*"],
+      "@admin/*": ["src/app/ui/admin/*"],
 
       "@actions": [
-        "src/app/core/actions/index"
+        "src/app/core/state/actions/index"
       ],
 
       "@ngrx/data": ["./modules/data"],

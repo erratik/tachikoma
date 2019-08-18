@@ -1,6 +1,5 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ClientModule } from 'src/app/client/client.module';
 import { ContainersModule } from '@containers/containers.module';
 
 import { LoggerService } from '@services/logger.service';
@@ -8,14 +7,18 @@ import { HeaderComponent } from '@containers/header/header.component';
 import { FooterComponent } from '@containers/footer/footer.component';
 import { MainComponent } from '@containers/main/main.component';
 import { RouterModule } from '@angular/router';
-import { EntitiesModule } from '@client/entities/entities.module';
 import { AdminModule } from '@shared/admin.module';
+import { SidenavComponent } from '@shared/containers/sidenav/sidenav.component';
+import { NotFoundComponent } from '@shared/containers';
+import { OniService, StateSelectorService } from './services';
+import { ErrorService } from '@shared/services';
+import { HttpClientModule } from '@angular/common/http';
 
-export const COMPONENTS = [ HeaderComponent, FooterComponent, MainComponent ];
+export const COMPONENTS = [ HeaderComponent, FooterComponent, MainComponent, SidenavComponent, NotFoundComponent ];
 @NgModule({
   // declarations: [ HeaderComponent, FooterComponent ],
-  imports: [ CommonModule, RouterModule, ClientModule, ContainersModule, EntitiesModule, AdminModule ],
-  providers: [ LoggerService ],
+  imports: [ CommonModule, HttpClientModule, RouterModule, ContainersModule, AdminModule ],
+  providers: [ OniService, StateSelectorService, ErrorService, LoggerService ],
   exports: COMPONENTS,
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })

@@ -1,4 +1,4 @@
-import { RouterModule } from '@angular/router';
+import { RouterModule, RouterStateSnapshot } from '@angular/router';
 import { StorageServiceModule } from 'angular-webstorage-service';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -9,10 +9,8 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule, RouterState } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
-import { ROOT_REDUCERS, metaReducers } from '@reducers/.';
-import { UserEffects, RouterEffects } from '@effects/.';
-
-import { ClientModule } from '@client/client.module';
+import { ROOT_REDUCERS, metaReducers } from '@shared/state/reducers';
+import { UserEffects, RouterEffects } from '@shared/state/effects';
 
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
@@ -22,10 +20,9 @@ import { LoggerService } from '@services/logger.service';
 import { ErrorService } from '@services/error.service';
 import { UiModule } from './ui/ui.module';
 import { NwbDialogService, NwbDialogComponent, NwbDialogModule } from '@wizishop/ng-wizi-bulma';
-import { LogoutConfirmationDialogComponent } from '@auth/components';
-import { StateSelectorService } from '@client/services/state-selector.service';
-import { EntitiesModule } from './client/entities/entities.module';
-import { RouteResolver } from '@resolvers/route.resolver';
+import { LogoutConfirmationDialogComponent } from '@shared/auth/components';
+import { StateSelectorService } from 'src/app/ui/services/state-selector.service';
+import { SettingsResolver, SpaceResolver } from '@resolvers/entity.resolver.ts';
 
 @NgModule({
   declarations: [ AppComponent ],
@@ -38,7 +35,6 @@ import { RouteResolver } from '@resolvers/route.resolver';
 
     AppRoutingModule,
     CoreModule,
-    ClientModule,
     UiModule,
 
     /**
@@ -89,11 +85,17 @@ import { RouteResolver } from '@resolvers/route.resolver';
      *
      * See: https://ngrx.io/guide/effects#registering-root-effects
      */
-    EffectsModule.forRoot([ UserEffects, RouterEffects ]),
-
-    EntitiesModule
+    EffectsModule.forRoot([ UserEffects, RouterEffects ])
   ],
-  providers: [ RouteResolver, ErrorService, LoggerService, StateSelectorService, NwbDialogService ],
+  providers: [
+    SpaceResolver,
+    SettingsResolver,
+    ErrorService,
+    LoggerService,
+    StateSelectorService,
+    NwbDialogService
+    // RouterStateSnapshot
+  ],
   bootstrap: [ AppComponent ],
   exports: [ MainComponent ],
   entryComponents: [ LogoutConfirmationDialogComponent, NwbDialogComponent ]

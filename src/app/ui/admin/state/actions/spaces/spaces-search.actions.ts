@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { Space } from '@client/entities/spaces/models';
+import { Space } from '@shared/models';
 
 export const searchSuccess = createAction('[Spaces/API] Search Success', props<{ spaces: Space[] }>());
 

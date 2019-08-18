@@ -1,0 +1,12 @@
+:host {
+  display: flex;
+  height: 100%;
+
+  main {
+    flex: 1 0 calc(100% - 21rem);
+
+    &.is-open {
+      margin-left: 16.5rem;
+    }
+  }
+}

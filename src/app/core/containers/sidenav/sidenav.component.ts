@@ -1,42 +1,63 @@
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input, HostListener } from '@angular/core';
 import { Store } from '@ngrx/store';
-import * as fromRoot from '@reducers/.';
-import { LayoutActions } from '@shared/actions';
-import { StateSelectorService } from '@client/services';
+import * as fromRoot from '@shared/state/reducers';
+import * as fromLayout from '@shared/state/reducers/layout.reducer';
+import * as fromSpace from '@shared/state/reducers/spaces/space.reducer';
+import { LayoutActions } from '@shared/state/actions/';
+import { StateSelectorService } from 'src/app/ui/services';
 import { Observable } from 'rxjs';
-import { Space } from '@client/entities/spaces/models';
-import { ViewSpacePageActions, AdminSpaceActions } from '@shared/state/actions';
+import { Space, Settings } from '@shared/models';
+import { AdminSpaceActions } from '@shared/state/actions/spaces';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { map, withLatestFrom } from 'rxjs/operators';
+import { MenuActions } from '@constants';
+import { WrapperComponent } from '@shared/pages/wrapper/wrapper.component';
 @Component({
   selector: 'oni-sidenav',
   templateUrl: './sidenav.component.html',
   styleUrls: [ './sidenav.component.scss' ]
 })
-export class SidenavComponent implements OnInit {
+export class SidenavComponent extends WrapperComponent implements OnInit {
   @Input() spaces: Space[];
-  layoutState$: Observable<any>;
-  // spaces$: Observable<any>;
-  isSidenavOpen = false;
-  constructor(private store: Store<fromRoot.State>, private stateSelector: StateSelectorService) {
-    this.layoutState$ = this.stateSelector.layoutState$;
-    // this.spaces$ = this.stateSelector.spaces$;
+  @Input() selected: Space;
+  @Input() layoutState: fromLayout.State;
+
+  settings$: Observable<Settings>;
+  space$: Observable<Space>;
+
+  isSidenavOpen: boolean;
+  editing: Space;
+
+  @Output() toggle: EventEmitter<boolean> = new EventEmitter<boolean>();
+
+  constructor(
+    public stateSelector: StateSelectorService,
+    public store: Store<fromRoot.State | fromSpace.State>,
+    public route: ActivatedRoute
+  ) {
+    super(stateSelector);
+    this.space$ = this.stateSelector.space$;
   }
 
   ngOnInit() {
-    // debugger;
-    // this.layoutState.subscribe();
+    this.isSidenavOpen = this.layoutState.showSidenav;
   }
 
   selectSpace(space: Space) {
     this.store.dispatch(AdminSpaceActions.selectSpace({ id: space.name }));
   }
+
+  editSpace($event: Event, space) {
+    this.store.dispatch(AdminSpaceActions.editSpace({ space }));
+  }
+
   toggleSidenav(): void {
-    this.layoutState$.subscribe((layout) => {
-      this.isSidenavOpen = !this.isSidenavOpen;
-      if (layout.showSidenav) {
-        this.store.dispatch(LayoutActions.closeSidenav());
-      } else {
-        this.store.dispatch(LayoutActions.openSidenav());
-      }
-    });
+    this.isSidenavOpen = !this.isSidenavOpen;
+    this.toggle.emit(this.isSidenavOpen);
+    if (this.layoutState.showSidenav) {
+      this.store.dispatch(LayoutActions.closeSidenav());
+    } else {
+      this.store.dispatch(LayoutActions.openSidenav());
+    }
   }
 }

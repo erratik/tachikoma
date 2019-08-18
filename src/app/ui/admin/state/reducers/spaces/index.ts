@@ -1,8 +1,8 @@
 import { createSelector, createFeatureSelector, combineReducers, Action } from '@ngrx/store';
 import * as fromSearch from '@admin-reducers/spaces/search.reducer';
 import * as fromSpaces from '@admin-reducers/spaces/spaces.reducer';
-import * as fromRoot from '@reducers/.';
-import { Space } from '@client/entities/spaces/models';
+import * as fromRoot from '@shared/state/reducers';
+import { Space } from '@shared/models';
 
 export const spacesFeatureKey = 'client';
 

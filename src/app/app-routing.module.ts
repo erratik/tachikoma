@@ -1,28 +1,27 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AuthGuard } from '@client/auth/services';
-import { RouteResolver } from '@resolvers/route.resolver';
+import { AuthGuard } from '@shared/auth/services';
 
 const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: '/settings'
-    // resolve: [ RouteResolver ],
-    // runGuardsAndResolvers: 'always'
+    redirectTo: '/admin'
   },
   {
-    path: 'spaces',
-    pathMatch: 'full',
-    data: { title: 'spaces' },
-    loadChildren: '@entities/spaces/space.module#SpaceModule'
-  },
-  {
-    path: 'settings',
-    pathMatch: 'prefix',
-    data: { title: 'settings' },
+    path: 'admin',
+    data: { title: 'admin' },
 
-    loadChildren: '@entities/settings/settings.module#SettingsModule'
+    canActivate: [ AuthGuard ],
+    children: [
+      {
+        path: '',
+        runGuardsAndResolvers: 'always',
+        loadChildren: '@admin/admin.module.ts#AdminModule',
+        canActivateChild: [ AuthGuard ]
+      }
+
+    ]
   }
   // { path: '**', component: NotFoundComponent }
 ];

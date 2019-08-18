@@ -1,13 +1,11 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-
-import * as fromAuth from '@client/auth/state/reducers';
 import { Observable } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 
-import * as fromSpace from '@entities/spaces/state/reducers/space.reducer';
-import * as fromSpacePage from '@entities/spaces/state/reducers';
-import { Space } from '@entities/spaces/models';
-import { StateSelectorService } from '@client/services';
+import * as fromSpace from '@shared/state/reducers/spaces/space.reducer';
+import * as fromSpacePage from '@shared/state/reducers/pages';
+import { Space } from '@shared/models';
+import { StateSelectorService } from 'src/app/ui/services';
 import { LoggerService } from '@shared/services';
 import { map } from 'rxjs/operators';
 
@@ -19,7 +17,7 @@ import { map } from 'rxjs/operators';
   styleUrls: [ './main.component.scss' ]
 })
 export class MainComponent implements OnInit {
-  spaces$: Observable<Space[]>;
+  // spaces$: Observable<Space[]>;
   // loading$: Observable<boolean>;
   // error$: Observable<string>;
 
@@ -32,9 +30,9 @@ export class MainComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.spaces$ = this.stateSelector.spaces$.pipe(map((spaces) => spaces));
-    // this.loading$ = this.stateSelector.checkFlagStatus(fromSpacePage.getSpacePageLoading);
-    // this.error$ = this.stateSelector.getErrorStatus(fromSpacePage.getSpacePageError);
-    // this.spaces$.subscribe();
+    // this.spaces$ = this.stateSelector.spaces$.pipe(map((spaces) => spaces));
+    // // this.loading$ = this.stateSelector.checkFlagStatus(fromSpacePage.getSpacePageLoading);
+    // // this.error$ = this.stateSelector.getErrorStatus(fromSpacePage.getSpacePageError);
+    // // this.spaces$.subscribe();
   }
 }

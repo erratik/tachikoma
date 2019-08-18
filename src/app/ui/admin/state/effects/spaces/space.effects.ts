@@ -2,13 +2,16 @@ import { Injectable } from '@angular/core';
 
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { asyncScheduler, EMPTY as empty, of, combineLatest } from 'rxjs';
-import { map, switchMap, tap } from 'rxjs/operators';
-import { AdminSpaceActions, ViewSpacePageActions } from '@admin-actions/.';
+import { map, switchMap, tap, catchError, take, publishReplay } from 'rxjs/operators';
+import { AdminSpaceActions, ViewSpacePageActions, SpaceApiActions } from '@admin-actions/.';
 // import { FindSpacePageActions, SpacesApiActions } from '@admin-actions/.';
-import { Space } from '@client/entities/spaces/models';
-import { SpaceService } from '@client/services/space.service';
-import { StateSelectorService } from '@client/services';
+import { Space } from '@shared/models';
+import { SpaceService } from 'src/app/ui/services/space.service';
+import { StateSelectorService } from 'src/app/ui/services';
 import { LoggerService } from '@shared/services';
+import { SettingsService } from 'src/app/ui/services/settings.service';
+import { AuthApiActions } from '@shared/auth/state/actions';
+import { Router } from '@angular/router';
 
 // import * as fromSpace from '@entities/spaces/state/reducers/space.reducer';
 /**
@@ -50,37 +53,52 @@ export class SpaceEffects {
   //     )
   // );
 
-  selectSpace$ = createEffect(() =>
+  initializeSpaces$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(AdminSpaceActions.selectSpace),
-      switchMap(({ id }) => {
-        this.logger.log(`[SELECTING SPACE] ${id}`);
-        return this.stateSelector.spaces$.pipe(
-          map((spaces) => spaces.find(({ name }) => name === id)),
-          tap(
-            (space) => AdminSpaceActions.loadSpace({ space }),
-            (error) => AdminSpaceActions.loadSpaceFailure({ error })
-          )
-        );
-      }),
-      map((data) => AdminSpaceActions.loadSpaceSuccess({ data }))
+      // ofType(SpaceApiActions.initializeSpaces),
+      ofType(AuthApiActions.loginSuccess),
+      switchMap(() => this.spaceService.getSpaces().pipe(map((spaces) => SpaceApiActions.loadSpaces({ spaces })))),
+      map((spaces) => AdminSpaceActions.storeSpaces(spaces)),
+      catchError((error) => of(SpaceApiActions.loadSpacesFailure({ error })))
     )
   );
 
-  // selectedSpace$ = createEffect(
-  //   () =>
-  //     this.actions$.pipe(
-  //       ofType(AdminSpaceActions.loadSpace),
-  //       map(({ space }) => SpaceActions.selectSpace({ current: space })),
-  //       tap((x) => x)
-  //     ),
-  //   { dispatch: true }
-  // );
+  loadSpace$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(AdminSpaceActions.selectSpace),
+        switchMap(({ id }) => {
+          // todo: figure out how to stop this actions from happening twice in a row...
+          this.logger.log(`[SELECTING SPACE] ${id}`);
+          return this.stateSelector.spaces$.pipe(
+            map((spaces) => spaces.find(({ name }) => name === id)),
+            tap((space) => space, (error) => AdminSpaceActions.loadSpaceFailure({ error }))
+          );
+        }),
+        map((space) => AdminSpaceActions.loadSpace({ space }))
+      )
+    // { dispatch: true }
+  );
+
+  editSpace$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(AdminSpaceActions.editSpace),
+        map(({ space }) => {
+          // console.log(this.router.onSameUrlNavigation);
+          this.router.navigate([ 'admin', 'edit', { space } ], { skipLocationChange: true });
+          return AdminSpaceActions.loadSpaceSuccess();
+        }),
+        take(1)
+      )
+    // { dispatch: true }
+  );
 
   constructor(
     private actions$: Actions,
     private spaceService: SpaceService,
     private stateSelector: StateSelectorService,
+    private router: Router,
     public logger: LoggerService
   ) {}
 }

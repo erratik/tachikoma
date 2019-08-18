@@ -1,0 +1,15 @@
+<oni-page-header [data$]="data$"></oni-page-header>
+<div class="container">
+
+  <pre>{{space | json}}</pre>
+  <!-- Router Outlet Here -->
+  <!-- <ng-content class="section"></ng-content> -->
+  <section class="columns">
+    <div class="column">
+      {{loading$ | async}}
+    </div>
+    <div class="column">
+      2
+    </div>
+  </section>
+</div>

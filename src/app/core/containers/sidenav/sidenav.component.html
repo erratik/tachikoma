@@ -5,36 +5,42 @@
     </p>
     <ul class="menu-list">
       <li *ngFor="let space of spaces" (click)="selectSpace(space)">
-        {{space.name}}
+        <span class="tag" [class.is-primary]="selected && space.name === selected.name">{{space.name}}</span>
       </li>
     </ul>
-    <p class="menu-label">
-      Administration
-    </p>
-    <ul class="menu-list">
-      <li><a>Team Settings</a></li>
-      <li>
-        <a class="is-active">Manage Your Team</a>
-        <ul>
-          <li><a>Members</a></li>
-          <li><a>Plugins</a></li>
-          <li><a>Add a member</a></li>
-        </ul>
-      </li>
-      <li><a>Invitations</a></li>
+    <div *ngIf="selected">
+      <p class="menu-label">
+        Manage {{selected.name}}
+      </p>
+      <ul class="menu-list">
+        <!-- <li><a></a></li> -->
+        <li>
+          <a [routerLink]="['admin','edit', {space: selected.name }]" routerLinkActive="is-active"><span
+              (click)="editSpace($event, selected.name)">Edit space</span></a>
+          <!-- <a (click)="editSpace(selected.name)">Edit space</a> -->
+          <!-- <ul>
+          <li><a>Icon</a></li>
+          <li><a>Description</a></li>
+        </ul> -->
+        </li>
+        <li>
+          <a routerLink="settings" routerLinkActive="is-active">Edit settings</a>
+          <!-- <ul>
+          <li><a>Credentials</a></li>
+          <li><a>Description</a></li>
+        </ul> -->
+        </li>
+        <!-- <li><a>Invitations</a></li>
       <li><a>Cloud Storage Environment Settings</a></li>
-      <li><a>Authentication</a></li>
-    </ul>
-    <p class="menu-label">
-      Transactions
-    </p>
-    <ul class="menu-list">
-      <li><a>Payments</a></li>
-      <li><a>Transfers</a></li>
-      <li><a>Balance</a></li>
-    </ul>
+      <li><a>Authentication</a></li> -->
+      </ul>
+    </div>
+
+
   </div>
-  <span class="icon is-large menu-toggler" (click)="toggleSidenav()">
-    <i class="fas fa-bars fa-2x"></i>
-  </span>
+
 </aside>
+<span class="icon is-large menu-toggler" (click)="toggleSidenav()">
+  <i class="fas fa-bars fa-2x"></i>
+</span>
+<!-- <pre>{{selected | json}}</pre>kljklj -->

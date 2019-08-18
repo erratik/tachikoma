@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { Space } from '@client/entities/spaces/models';
+import { Space } from '@shared/models';
 
 /**
  * Add Space to Selection Action

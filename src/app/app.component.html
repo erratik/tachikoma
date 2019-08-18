@@ -1,4 +1,7 @@
-<main>
+<oni-sidenav [spaces]="spaces$ | async" [selected]="selectedSpace$ | async" [layoutState]="layoutState$ | async"
+  (toggle)="showSidenav = $event">
+</oni-sidenav>
+<main [class.is-open]="showSidenav">
   <app-header (userLogout)="openDialog()" [isLoggedIn]="isLoggedIn$ | async"></app-header>
   <app-container>
     <ng-container>

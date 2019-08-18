@@ -150,6 +150,14 @@ i+* {
 
 section {
   padding: 3rem 1.5rem 0;
+
+  &.section {
+    padding: 3rem 1.5rem 1.5rem;
+
+    +.container {
+      padding: 0 1.5rem 0;
+    }
+  }
 }
 
 .columns {

@@ -1,16 +1,4 @@
-<oni-sidenav [spaces]="spaces$ | async">
-
-</oni-sidenav>
-
-<section class="section">
-  <div class="container">
-    <div class="heading">
-      <h1 class="title">datawhore</h1>
-      <h2 class="subtitle"> admin interface</h2>
-    </div>
-  </div>
+<section class="container">
+  <!-- Router Outlet Injected Here -->
+  <ng-content class="section"></ng-content>
 </section>
-
-<div class="container">
-  <ng-content></ng-content>
-</div>
